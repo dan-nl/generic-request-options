@@ -1,5 +1,5 @@
 # generic request options
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NSP Status][nsp-image]][nsp-url]
 
 provides a generic set of request options for the npm [request][request-url] module that can be augmented.
 
@@ -103,6 +103,8 @@ request(
 [mit-license]: https://raw.githubusercontent.com/dan-nl/generic-request-options/master/license.txt
 [npm-image]: https://img.shields.io/npm/v/generic-request-options.svg
 [npm-url]: https://www.npmjs.com/package/generic-request-options
+[nsp-image]: https://nodesecurity.io/orgs/githubdan-nl/projects/d466ab65-2f2b-43a2-a7bb-0d01fbe7450c/badge
+[nsp-url]: https://nodesecurity.io/orgs/githubdan-nl/projects/d466ab65-2f2b-43a2-a7bb-0d01fbe7450c
 [request-url]: https://www.npmjs.com/package/request
 [travis-image]: https://travis-ci.org/dan-nl/generic-request-options.svg?branch=master
 [travis-url]: https://travis-ci.org/dan-nl/generic-request-options
