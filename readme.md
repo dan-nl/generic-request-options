@@ -6,7 +6,7 @@ provides a generic set of request options for the [request][request-url] package
 ## table of contents
 * [installation](#installation)
 * [usage](#usage)
-    * [getGenericRequestOptions( [options][, request_headers] )](##getgenericrequestoptions-options-request_headers-)
+    * [getGenericRequestOptions( [options][, request_headers] )](#getgenericrequestoptions-options-request_headers-)
     * [default](#default)
     * [adding user options](#user-options)
     * [overriding the default timeout](#overriding-the-default-timeout)
