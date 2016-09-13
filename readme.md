@@ -1,7 +1,18 @@
 # generic request options
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NSP Status][nsp-image]][nsp-url]
 
-provides a generic set of request options for the npm [request][request-url] module that can be augmented.
+provides a generic set of request options for the [request][request-url] package that can be augmented with the functions parameters.
+
+## table of contents
+* [installation](#installation)
+* [usage](#usage)
+    * [getGenericRequestOptions( [options][, request_headers] )](##getgenericrequestoptions-options-request_headers-)
+    * [default](#default)
+    * [adding user options](#user-options)
+    * [overriding the default timeout](#overriding-the-default-timeout)
+    * [adding additional headers](#adding-additional-headers)
+    * [with request.headers](#with-request-headers)
+* [license](#license)
 
 ## installation
 ```javascript
@@ -34,13 +45,14 @@ request(
 }
 ```
 
-### overriding the default timeout
+### adding user options
 ```javascript
 var getGenericRequestOptions = require( 'generic-request-options' );
 var request = require( 'request' );
+var user_options = { method: 'get', url: 'https://your.api' };
 
 request(
-  getGenericRequestOptions( { timeout: 3000 } ),
+  getGenericRequestOptions( user_options ),
   function responseHandler( err, res, body ) {}
 );
 
@@ -48,7 +60,30 @@ request(
   headers: {
     'user-agent': 'node.js/<node-version> request (https://www.npmjs.com/package/request)'
   },
-  timeout: 3000
+  method: 'get',
+  timeout: 10000,
+  url: 'https://your.api'
+}
+```
+
+### overriding the default timeout
+```javascript
+var getGenericRequestOptions = require( 'generic-request-options' );
+var request = require( 'request' );
+var user_options = { method: 'get', timeout: 3000, url: 'https://your.api' };
+
+request(
+  getGenericRequestOptions( user_options ),
+  function responseHandler( err, res, body ) {}
+);
+
+// getGenericRequestOptions => {
+  headers: {
+    'user-agent': 'node.js/<node-version> request (https://www.npmjs.com/package/request)'
+  },
+  method: 'get',
+  timeout: 3000,
+  url: 'https://your.api'
 }
 ```
 
@@ -56,29 +91,33 @@ request(
 ```javascript
 var getGenericRequestOptions = require( 'generic-request-options' );
 var request = require( 'request' );
+var user_options = { method: 'get', url: 'https://your.api' };
 
 request(
-  getGenericRequestOptions( { headers: { accepts: 'application/json' } } ),
+  getGenericRequestOptions( user_options, { headers: { accept: 'application/json' } } ),
   function responseHandler( err, res, body ) {}
 );
 
 // getGenericRequestOptions => {
   headers: {
-    accepts: 'application/json',
+    accept: 'application/json',
     'user-agent': 'node.js/<node-version> request (https://www.npmjs.com/package/request)'
   },
-  timeout: 10000
+  method: 'get',
+  timeout: 10000,
+  url: 'https://your.api'
 }
 ```
 
 ### with request.headers
-where `request.headers` is, for example, the header object from an incoming [express][express-url] request 
+where `req.headers` is, for example, the header object from an [express][express-url] route request
 ```javascript
 var getGenericRequestOptions = require( 'generic-request-options' );
 var request = require( 'request' );
+var user_options = { method: 'get', url: 'https://your.api' };
 
 request(
-  getGenericRequestOptions( null, request.headers ),
+  getGenericRequestOptions( user_options, req.headers ),
   function responseHandler( err, res, body ) {}
 );
 
@@ -90,7 +129,9 @@ request(
     'x-real-agent': <request_headers['x-real-agent']>,
     'x-real-ip': <request_headers['x-real-ip']>
   },
-  timeout: 10000
+  method: 'get',
+  timeout: 10000,
+  url: 'https://your.api'
 }
 ```
 

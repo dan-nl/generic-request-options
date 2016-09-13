@@ -2,6 +2,6 @@
 
 module.exports = {
   headers: {
-    accepts: 'application/json'
+    accept: 'application/json'
   }
 };

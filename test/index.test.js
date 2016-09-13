@@ -24,9 +24,9 @@ describe( 'getGenericRequestOptions( [options][, request_headers] )', function (
         .to.deep.equal( require( './fixtures/returns/with-options-headers-user-agent' ) );
     } );
 
-    it( 'augments the options returned, e.g., options.headers.accepts', function () {
-      expect( getGenericRequestOptions( require( './fixtures/options-headers-accepts' ) ) )
-        .to.deep.equal( require( './fixtures/returns/with-options-headers-accepts' ) );
+    it( 'augments the options returned, e.g., options.headers.accept', function () {
+      expect( getGenericRequestOptions( require( './fixtures/options-headers-accept' ) ) )
+        .to.deep.equal( require( './fixtures/returns/with-options-headers-accept' ) );
     } );
 
     describe( 'contains common request headers when provided: ', function () {
