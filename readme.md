@@ -8,10 +8,10 @@ provides a generic set of request options for the [request][request-url] package
 * [usage](#usage)
     * [getGenericRequestOptions( [options][, request_headers] )](#getgenericrequestoptions-options-request_headers-)
     * [default](#default)
-    * [adding user options](#user-options)
+    * [adding user options](#adding-user-options)
     * [overriding the default timeout](#overriding-the-default-timeout)
     * [adding additional headers](#adding-additional-headers)
-    * [with request.headers](#with-request-headers)
+    * [with request.headers](#with-requestheaders)
 * [license](#license)
 
 ## installation
