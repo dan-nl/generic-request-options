@@ -1,0 +1,33 @@
+{
+  "name": "generic-request-options",
+  "version": "0.0.0",
+  "description": "provides a generic set of request options for the npm request module that can be augmented",
+  "author": "dan entous",
+  "license": "MIT",
+  "main": "src",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dan-nl/generic-request-options.git"
+  },
+  "keywords": [
+    "generic request options",
+    "request"
+  ],
+  "bugs": {
+    "url": "https://github.com/dan-nl/generic-request-options/issues"
+  },
+  "homepage": "https://github.com/dan-nl/generic-request-options#readme",
+  "scripts": {
+    "cover": "istanbul cover _mocha -- -R spec --recursive",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "eslint": "eslint .",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "coveralls": "2.11.12",
+    "eslint": "3.5.0",
+    "istanbul": "0.4.5",
+    "mocha": "3.0.2"
+  }
+}
