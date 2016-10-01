@@ -144,8 +144,8 @@ request(
 [mit-license]: https://raw.githubusercontent.com/dan-nl/generic-request-options/master/license.txt
 [npm-image]: https://img.shields.io/npm/v/generic-request-options.svg
 [npm-url]: https://www.npmjs.com/package/generic-request-options
-[nsp-image]: https://nodesecurity.io/orgs/githubdan-nl/projects/d466ab65-2f2b-43a2-a7bb-0d01fbe7450c/badge
-[nsp-url]: https://nodesecurity.io/orgs/githubdan-nl/projects/d466ab65-2f2b-43a2-a7bb-0d01fbe7450c
+[nsp-image]: https://nodesecurity.io/orgs/githubdan-nl/projects/3d50dee7-3812-4afc-83d5-b3b46c6966ba/badge
+[nsp-url]: https://nodesecurity.io/orgs/githubdan-nl/projects/3d50dee7-3812-4afc-83d5-b3b46c6966ba
 [request-url]: https://www.npmjs.com/package/request
 [travis-image]: https://travis-ci.org/dan-nl/generic-request-options.svg?branch=master
 [travis-url]: https://travis-ci.org/dan-nl/generic-request-options
