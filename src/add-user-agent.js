@@ -10,10 +10,8 @@ module.exports = function addUserAgent( user_headers ) {
     'node.js/%node request (https://www.npmjs.com/package/request)'
       .replace( '%node', process.version );
 
-  if ( user_headers instanceof Object ) {
-    if ( typeof user_headers[ 'user-agent' ] === 'string' ) {
-      user_agent = user_headers[ 'user-agent' ];
-    }
+  if ( typeof user_headers[ 'user-agent' ] === 'string' ) {
+    user_agent = user_headers[ 'user-agent' ];
   }
 
   return user_agent;
