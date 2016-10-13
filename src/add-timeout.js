@@ -2,6 +2,7 @@
 
 /**
  * @param {number} [user_timeout]
+ *
  * @returns {number}
  */
 module.exports = function addTimeout( user_timeout ) {

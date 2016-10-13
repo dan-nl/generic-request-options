@@ -6,6 +6,7 @@
  *
  * @param {Object} [user_headers]
  * @param {Object} request_headers
+ *
  * @returns {*|{}}
  */
 module.exports = function addRequestHeaders( user_headers, request_headers ) {

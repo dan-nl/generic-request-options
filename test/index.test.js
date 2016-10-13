@@ -29,6 +29,11 @@ describe( 'getGenericRequestOptions( [options][, request_headers] )', function (
         .to.deep.equal( require( './fixtures/returns/with-options-headers-accept' ) );
     } );
 
+    it( 'maintain user provided options in the returned object', function () {
+      expect( getGenericRequestOptions( require( './fixtures/options-extra' ) ) )
+        .to.deep.equal( require( './fixtures/returns/with-options-extra' ) );
+    } );
+
     describe( 'contains common request headers when provided: ', function () {
       it( 'x-forwarded-for', function () {
         expect( getGenericRequestOptions( {}, require( './fixtures/request-headers-x-forwarded-for' ) ) )

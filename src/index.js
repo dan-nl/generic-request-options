@@ -12,13 +12,11 @@ var addUserAgent = require( './add-user-agent' );
  * @returns {*|{}}
  */
 module.exports = function getGenericRequestOptions( user_options, request_headers ) {
-  var options = {};
+  var options = user_options || {};
 
-  user_options = user_options || {};
-
-  options.headers = addRequestHeaders( user_options.headers, request_headers );
-  options.headers[ 'user-agent' ] = addUserAgent( user_options.headers );
-  options.timeout = addTimeout( user_options.timeout );
+  options.headers = addRequestHeaders( options.headers, request_headers );
+  options.headers[ 'user-agent' ] = addUserAgent( options.headers );
+  options.timeout = addTimeout( options.timeout );
 
   return options;
 };
