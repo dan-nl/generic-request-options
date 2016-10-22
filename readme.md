@@ -5,13 +5,15 @@ provides a generic set of request options for the [request][request-url] package
 
 ## table of contents
 * [installation](#installation)
-* [usage](#usage)
+* [use](#use)
     * [getGenericRequestOptions( [options][, request_headers] )](#getgenericrequestoptions-options-request_headers-)
-    * [default](#default)
+    * [user_options](#user_options)
+    * [request_headers](#request_headers)
+    * [basic](#basic)
     * [adding user options](#adding-user-options)
     * [overriding the default timeout](#overriding-the-default-timeout)
     * [adding additional headers](#adding-additional-headers)
-    * [with request.headers](#with-requestheaders)
+    * [with req.headers](#with-reqheaders)
 * [license](#license)
 
 ## installation
@@ -19,23 +21,37 @@ provides a generic set of request options for the [request][request-url] package
 npm install generic-request-options
 ```
 
-## usage
-### getGenericRequestOptions( [options][, request_headers] )
+## use
+### getGenericRequestOptions( [user_options][, request_headers] )
 ```javascript
-@param {Object} [options]
+@param {Object} [user_options]
 @param {Object} [request_headers]
 @returns {Object}
 ```
 
-### default
+### user_options
+any valid [request options][request-options-url]
+
+### request_headers
+the intention is to pass in optional [http request headers][http-request-headers-url] that will be used by the [request][request-url] method.
+
+in order to pass on proxy headers, you can also pass in the `req.headers` that make up the header object of an [express][express-url] route request. the intent being to pass on the proxy headers:
+
+* x-forwarded-for
+* x-forwarded-proto
+* x-real-agent
+* x-real-ip
+
+### basic
 ```javascript
 var getGenericRequestOptions = require( 'generic-request-options' );
 var request = require( 'request' );
 
-request(
-  getGenericRequestOptions()
-  function responseHandler( err, res, body ) {}
-);
+function responseHandler( err, res, body ) {
+  // handle request response
+}
+
+request( getGenericRequestOptions(), responseHandler );
 
 // getGenericRequestOptions => {
   headers: {
@@ -51,10 +67,11 @@ var getGenericRequestOptions = require( 'generic-request-options' );
 var request = require( 'request' );
 var user_options = { method: 'get', url: 'https://your.api' };
 
-request(
-  getGenericRequestOptions( user_options ),
-  function responseHandler( err, res, body ) {}
-);
+function responseHandler( err, res, body ) {
+  // handle request response
+}
+
+request( getGenericRequestOptions( user_options ), responseHandler );
 
 // getGenericRequestOptions => {
   headers: {
@@ -72,10 +89,11 @@ var getGenericRequestOptions = require( 'generic-request-options' );
 var request = require( 'request' );
 var user_options = { method: 'get', timeout: 3000, url: 'https://your.api' };
 
-request(
-  getGenericRequestOptions( user_options ),
-  function responseHandler( err, res, body ) {}
-);
+function responseHandler( err, res, body ) {
+  // handle request response
+}
+
+request( getGenericRequestOptions( user_options ), responseHandler );
 
 // getGenericRequestOptions => {
   headers: {
@@ -91,12 +109,14 @@ request(
 ```javascript
 var getGenericRequestOptions = require( 'generic-request-options' );
 var request = require( 'request' );
+var request_headers = { headers: { accept: 'application/json' } };
 var user_options = { method: 'get', url: 'https://your.api' };
 
-request(
-  getGenericRequestOptions( user_options, { headers: { accept: 'application/json' } } ),
-  function responseHandler( err, res, body ) {}
-);
+function responseHandler( err, res, body ) {
+  // handle request response
+}
+
+request( getGenericRequestOptions( user_options, request_headers ), responseHandler );
 
 // getGenericRequestOptions => {
   headers: {
@@ -109,16 +129,23 @@ request(
 }
 ```
 
-### with request.headers
+### with req.headers
 where `req.headers` is, for example, the header object from an [express][express-url] route request
 ```javascript
 var getGenericRequestOptions = require( 'generic-request-options' );
 var request = require( 'request' );
-var user_options = { method: 'get', url: 'https://your.api' };
 
-request(
-  getGenericRequestOptions( user_options, req.headers ),
-  function responseHandler( err, res, body ) {}
+function responseHandler( err, res, body ) {
+  // handle request response
+}
+
+function middleware( req, res, next ) {
+  var user_options = { 
+    method: 'get', url: 'https://your.api' 
+  };
+
+  request( getGenericRequestOptions( user_options, req.headers ), responseHandler );
+  next();
 );
 
 // getGenericRequestOptions => {
@@ -141,11 +168,13 @@ request(
 [coveralls-image]: https://coveralls.io/repos/github/dan-nl/generic-request-options/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/dan-nl/generic-request-options?branch=master
 [express-url]: https://www.npmjs.com/package/express
+[http-request-headers-url]: https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Request_fields
 [mit-license]: https://raw.githubusercontent.com/dan-nl/generic-request-options/master/license.txt
 [npm-image]: https://img.shields.io/npm/v/generic-request-options.svg
 [npm-url]: https://www.npmjs.com/package/generic-request-options
 [nsp-image]: https://nodesecurity.io/orgs/githubdan-nl/projects/3d50dee7-3812-4afc-83d5-b3b46c6966ba/badge
 [nsp-url]: https://nodesecurity.io/orgs/githubdan-nl/projects/3d50dee7-3812-4afc-83d5-b3b46c6966ba
+[request-options-url]: https://www.npmjs.com/package/request#requestoptions-callback
 [request-url]: https://www.npmjs.com/package/request
 [travis-image]: https://travis-ci.org/dan-nl/generic-request-options.svg?branch=master
 [travis-url]: https://travis-ci.org/dan-nl/generic-request-options
