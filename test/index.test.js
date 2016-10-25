@@ -29,6 +29,11 @@ describe( 'getGenericRequestOptions( [options][, request_headers] )', function (
         .to.deep.equal( require( './fixtures/returns/with-options-headers-accept' ) );
     } );
 
+    it( 'augments the options returned, e.g., options.headers.date', function () {
+      expect( getGenericRequestOptions( require( './fixtures/options-headers-date' ) ) )
+        .to.deep.equal( require( './fixtures/returns/with-options-headers-date' ) );
+    } );
+
     it( 'maintain user provided options in the returned object', function () {
       expect( getGenericRequestOptions( require( './fixtures/options-extra' ) ) )
         .to.deep.equal( require( './fixtures/returns/with-options-extra' ) );

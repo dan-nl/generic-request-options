@@ -3,6 +3,7 @@
 module.exports = {
   headers: {
     'accept': 'application/json',
+    'date': new Date().toUTCString(),
     'user-agent': 'node.js/%node request (https://www.npmjs.com/package/request)'.replace( '%node', process.version )
   },
   timeout: 10000

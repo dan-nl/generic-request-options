@@ -16,6 +16,11 @@ module.exports = function getGenericRequestOptions( user_options, request_header
 
   options.headers = addRequestHeaders( options.headers, request_headers );
   options.headers[ 'user-agent' ] = addUserAgent( options.headers );
+
+  if ( !options.headers.date ) {
+    options.headers.date = new Date().toUTCString();
+  }
+
   options.timeout = addTimeout( options.timeout );
 
   return options;
