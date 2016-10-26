@@ -1,12 +1,12 @@
 # generic request options
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NSP Status][nsp-image]][nsp-url]
 
-provides a generic set of request options for the [request][request-url] package that can be augmented with the functions parameters.
+provides a generic set of request options for the [request][request-url] package that can be augmented by providing [`user_options`](#user_options) and [`request_headers`](#request_headers).
 
 ## table of contents
 * [installation](#installation)
 * [use](#use)
-    * [getGenericRequestOptions( [options][, request_headers] )](#getgenericrequestoptions-options-request_headers-)
+    * [getGenericRequestOptions( [user_options][, request_headers] )](#getgenericrequestoptions-user_options-request_headers-)
     * [user_options](#user_options)
     * [request_headers](#request_headers)
     * [basic](#basic)
@@ -43,6 +43,7 @@ in order to pass on proxy headers, you can also pass in the `req.headers` that m
 * x-real-ip
 
 ### basic
+the basic use case will return the http headers date and user-agent, and a timeout
 ```javascript
 var getGenericRequestOptions = require( 'generic-request-options' );
 var request = require( 'request' );
@@ -55,6 +56,7 @@ request( getGenericRequestOptions(), responseHandler );
 
 // getGenericRequestOptions => {
   headers: {
+    date: '<new Date().toUTCString()>'
     'user-agent': 'node.js/<node-version> request (https://www.npmjs.com/package/request)'
   },
   timeout: 10000
@@ -65,7 +67,11 @@ request( getGenericRequestOptions(), responseHandler );
 ```javascript
 var getGenericRequestOptions = require( 'generic-request-options' );
 var request = require( 'request' );
-var user_options = { method: 'get', url: 'https://your.api' };
+
+var user_options = { 
+  method: 'get', 
+  url: 'https://your.api' 
+};
 
 function responseHandler( err, res, body ) {
   // handle request response
@@ -75,6 +81,7 @@ request( getGenericRequestOptions( user_options ), responseHandler );
 
 // getGenericRequestOptions => {
   headers: {
+    date: '<new Date().toUTCString()>'
     'user-agent': 'node.js/<node-version> request (https://www.npmjs.com/package/request)'
   },
   method: 'get',
@@ -87,7 +94,12 @@ request( getGenericRequestOptions( user_options ), responseHandler );
 ```javascript
 var getGenericRequestOptions = require( 'generic-request-options' );
 var request = require( 'request' );
-var user_options = { method: 'get', timeout: 3000, url: 'https://your.api' };
+
+var user_options = { 
+  method: 'get', 
+  timeout: 3000, 
+  url: 'https://your.api' 
+};
 
 function responseHandler( err, res, body ) {
   // handle request response
@@ -97,6 +109,7 @@ request( getGenericRequestOptions( user_options ), responseHandler );
 
 // getGenericRequestOptions => {
   headers: {
+    date: '<new Date().toUTCString()>'
     'user-agent': 'node.js/<node-version> request (https://www.npmjs.com/package/request)'
   },
   method: 'get',
@@ -109,8 +122,17 @@ request( getGenericRequestOptions( user_options ), responseHandler );
 ```javascript
 var getGenericRequestOptions = require( 'generic-request-options' );
 var request = require( 'request' );
-var request_headers = { headers: { accept: 'application/json' } };
-var user_options = { method: 'get', url: 'https://your.api' };
+
+var request_headers = { 
+  headers: { 
+    accept: 'application/json' 
+  } 
+};
+
+var user_options = { 
+  method: 'get', 
+  url: 'https://your.api' 
+};
 
 function responseHandler( err, res, body ) {
   // handle request response
@@ -121,6 +143,7 @@ request( getGenericRequestOptions( user_options, request_headers ), responseHand
 // getGenericRequestOptions => {
   headers: {
     accept: 'application/json',
+    date: '<new Date().toUTCString()>',
     'user-agent': 'node.js/<node-version> request (https://www.npmjs.com/package/request)'
   },
   method: 'get',
@@ -141,7 +164,8 @@ function responseHandler( err, res, body ) {
 
 function middleware( req, res, next ) {
   var user_options = { 
-    method: 'get', url: 'https://your.api' 
+    method: 'get', 
+    url: 'https://your.api' 
   };
 
   request( getGenericRequestOptions( user_options, req.headers ), responseHandler );
@@ -150,6 +174,7 @@ function middleware( req, res, next ) {
 
 // getGenericRequestOptions => {
   headers: {
+    date: '<new Date().toUTCString()>'
     'user-agent': 'node.js/<node-version> request (https://www.npmjs.com/package/request)'
     'x-forwarded-for': <request_headers['x-forward-for']>,
     'x-forwarded-proto': <request_headers['x-forward-for']>,
