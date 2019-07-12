@@ -1,5 +1,5 @@
 # generic request options
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![NSP Status][nsp-image]][nsp-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url]
 
 provides a generic set of request options for the [request][request-url] package that can be augmented by providing [`user_options`](#user_options) and [`request_headers`](#request_headers).
 
@@ -197,8 +197,6 @@ function middleware( req, res, next ) {
 [mit-license]: https://raw.githubusercontent.com/dan-nl/generic-request-options/master/license.txt
 [npm-image]: https://img.shields.io/npm/v/generic-request-options.svg
 [npm-url]: https://www.npmjs.com/package/generic-request-options
-[nsp-image]: https://nodesecurity.io/orgs/githubdan-nl/projects/3d50dee7-3812-4afc-83d5-b3b46c6966ba/badge
-[nsp-url]: https://nodesecurity.io/orgs/githubdan-nl/projects/3d50dee7-3812-4afc-83d5-b3b46c6966ba
 [request-options-url]: https://www.npmjs.com/package/request#requestoptions-callback
 [request-url]: https://www.npmjs.com/package/request
 [travis-image]: https://travis-ci.org/dan-nl/generic-request-options.svg?branch=master
