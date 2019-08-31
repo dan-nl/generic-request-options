@@ -1,6 +1,6 @@
 {
   "name": "generic-request-options",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "provides a generic set of request options for the request package",
   "author": "dan entous",
   "license": "MIT",
